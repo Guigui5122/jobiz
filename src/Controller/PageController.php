@@ -2,7 +2,7 @@
 
 namespace App\Controller; // sert à éviter le conflit des noms
 
-class PageController 
+class PageController extends Controller
 {
     // public function test() // méthode basique (``public`` = accessible à l'extérieur de la classe)
     // {
@@ -28,21 +28,10 @@ class PageController
         $this->render("pages/about");
 
     }
-// render() = méthode qui gère le rendu
-    protected function render(string $path, array $params =[])
+    public function test()
     {
-        // variable qui contient le chemin du template 'home.php' que l'on veut afficher
-        $filePath = APP_ROOT."/templates/$path.php";
+        $this->render("pages/test");
 
-        // on vérifie si le fichier existe
-        if(!file_exists($filePath)){
-            //s'il n'existe pas, on affiche un message d'erreur :
-            echo "⚠️ Le fichier $filePath n'existe pas";
-        } else {
-            // extract() permet de tranformer chaque clé du tableau en variable
-            extract($params);
-            // sinon on inclut le fichier 'une fois seulement' !
-            require_once $filePath;
-        }
     }
+
 }

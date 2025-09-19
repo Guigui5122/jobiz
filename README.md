@@ -51,4 +51,45 @@ Il gère le système d'autoload
 ## Création de la page PageController.php
 Classe qui va gérer l'affichage des pages de base de notre site (a propos, mentions legales, etc...)
 
-//replay live 2/6 25'
+On a créé des méthodes 'home()', et 'about()' qui renvoie un affichage avec une autre méthode render()
+cette méthode sera refactorée ultérieurement dans un contrôleur de base (ex: Controller.php) pour gérer l'affichage de plusieures controleurs. Cela évitera la redondance de code dans les controleurs.
+
+## public/Index.php
+Création de l'index.php dans /public (point d'entrée de l'app)
+On a définit une constante pour avoir la racine de l'app
+*define('APP_ROOT', dirname(__DIR__));*
+
+Grâce au ``'namespace'`` on précise qu'elle classe on veut utiliser avec ``"use"`` :
+*use App\Controller\PageController;*
+
+On a instancié un PageController pour pouvoir appeler les méthodes de la classe PageController
+
+*$pageController = new PageController();*
+*$pageController->home();*
+
+
+## Création du dossier ./src/templates
+Les templates font parties de la 'Vue', ils gèreront l'affichage, et seront réutilisables et adaptables
+
+Dans ce dossier templates, on créer le dossier ``/pages`` puis dans ce dossier nos différents templates de pages (home.php, about.php, etc...)
+
+## Création du Controller.php (contrôleur de base)
+## Création du dossier /src/Routing/
+* gère les Routes avec le fichier Router.php = distribut la requête au bon controleur !
+
+
+
+## Dossier /config
+On créer un fichier ``routes.php`` qui va répertorier dans un fichier de config toutes les routes disponibles dans un tableau associatif.
+
+## Réécriture d'URL 
+On créer un fichier ``.htaccess`` (dans le dossier /public) pour autoriser la réécriture d'URL (plus propre), et rediriger vers *index.php [QSA,L]*
+
+[QSA = Query String Append] autorise les paramètres d'url
+[L = last]
+
+Le fichier .htaccess est lié à Apache
+
+
+
+//TODO : replay live 4/6
